@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<!-- Table creation/modification related changesets written here -->
+
+
+	<changeSet id="1.0" author="sasharma">
+		<preConditions onFail="MARK_RAN"
+			onFailMessage="Table already exist">
+			<not>
+				<tableExists tableName="t_tenant" />
+			</not>
+		</preConditions>
+		<createTable tableName="t_tenant">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(250)">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="sub_domain" type="varchar" />
+			<column name="db_name" type="varchar(60)" />
+			<column name="status" type="varchar" />
+			<column name="created_date" type="timestamp">
+				<constraints nullable="false" />
+			</column>
+			<column name="updated_date" type="timestamp">
+				<constraints nullable="false" />
+			</column>
+			<column name="createdby" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="updatedby" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="1.1" author="sasharma" runOnChange="false">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="hibernate_sequence" />
+			</not>
+		</preConditions>
+		<comment>ADD sequence for hibernate_sequence</comment>
+		<createSequence sequenceName="hibernate_sequence"
+			startValue="1" incrementBy="1" />
+	</changeSet>
+
+	<changeSet id="1.2" author="sasharma" dbms="postgresql,h2"
+		runOnChange="false">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="role_seq" />
+			</not>
+		</preConditions>
+		<comment>ADD sequence for user_seq</comment>
+		<createSequence sequenceName="role_seq" startValue="1"
+			incrementBy="1" />
+	</changeSet>
+	
+	<changeSet id="1.3" author="sasharma" dbms="postgresql,h2"
+		runOnChange="false">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<sequenceExists sequenceName="user_seq" />
+			</not>
+		</preConditions>
+		<comment>ADD sequence for user_seq</comment>
+		<createSequence sequenceName="user_seq" startValue="1"
+			incrementBy="1" />
+	</changeSet>
+
+	<changeSet id="1.4" author="sasharma">
+		<preConditions onFail="MARK_RAN"
+			onFailMessage="Table already exist">
+			<not>
+				<tableExists tableName="t_user" />
+			</not>
+		</preConditions>
+		<createTable tableName="t_user">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="username" type="varchar(250)">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="password" type="varchar" />
+			<column name="is_active" type="varchar(60)" />
+			<column name="created_date" type="timestamp">
+				<constraints nullable="false" />
+			</column>
+			<column name="updated_date" type="timestamp">
+				<constraints nullable="false" />
+			</column>
+			<column name="createdby" type="bigint">
+				<constraints nullable="false" />
+			</column>
+			<column name="updatedby" type="bigint">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="1.5" author="sasharma">
+		<preConditions onFail="MARK_RAN"
+			onFailMessage="Table Already exist">
+			<not>
+				<tableExists tableName="ref_role" />
+			</not>
+		</preConditions>
+		<createTable tableName="ref_role">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="type" type="varchar(250)">
+				<constraints nullable="false" unique="true" />
+			</column>
+			<column name="value" type="varchar" />
+		</createTable>
+	</changeSet>
+
+	<changeSet id="1.6" author="sasharma">
+		<preConditions onFail="MARK_RAN"
+			onFailMessage="Table Already exist">
+			<not>
+				<tableExists tableName="bt_user_role" />
+			</not>
+		</preConditions>
+		<createTable tableName="bt_user_role">
+			<column name="userid" type="bigint">
+				<constraints nullable="false"
+					foreignKeyName="user_role_foreign" referencedTableName="t_user(id)" />
+			</column>
+			<column name="roleid" type="bigint">
+				<constraints nullable="false"
+					foreignKeyName="role_role_foreign"
+					referencedTableName="ref_role(id)" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="1.7" author="sasharma">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="datasourceconfig" />
+			</not>
+		</preConditions>
+		<createTable tableName="datasourceconfig">
+			<column name="id" type="bigint">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="username" type="varchar(250)">
+				<constraints nullable="false" />
+			</column>
+			<column name="password" type="varchar" />
+			<column name="driverclassname" type="varchar(60)" />
+			<column name="url" type="varchar(60)" />
+			<column name="name" type="varchar(60)" />
+			<column name="initialize" type="varchar(60)" />
+		</createTable>
+	</changeSet>
+
+
+</databaseChangeLog>
