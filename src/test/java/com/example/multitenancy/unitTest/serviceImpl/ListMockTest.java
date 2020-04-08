@@ -1,4 +1,4 @@
-package com.example.multitenancy.serviceImpl;
+package com.example.multitenancy.unitTest.serviceImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
@@ -8,11 +8,15 @@ import static org.mockito.Mockito.verify;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.rmi.CORBA.Stub;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.context.ActiveProfiles;
 
+@ActiveProfiles("test")
 @RunWith(MockitoJUnitRunner.class)
 public class ListMockTest {
 

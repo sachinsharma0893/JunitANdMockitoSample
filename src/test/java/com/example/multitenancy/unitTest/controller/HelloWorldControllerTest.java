@@ -1,4 +1,4 @@
-package com.example.multitenancy.controller;
+package com.example.multitenancy.unitTest.controller;
 
 import static org.junit.Assert.assertEquals;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -11,6 +11,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.jpa.mapping.JpaMetamodelMappingContext;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -19,6 +20,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.example.multitenancy.controllers.HelloWorldController;
 
+@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 @MockBean(JpaMetamodelMappingContext.class)
 @WebMvcTest(value = HelloWorldController.class)

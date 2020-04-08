@@ -1,4 +1,4 @@
-package com.example.multitenancy.serviceImpl;
+package com.example.multitenancy.unitTest.serviceImpl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
@@ -8,9 +8,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.test.context.ActiveProfiles;
 
 import com.example.multitenancy.service.SomeDataService;
+import com.example.multitenancy.serviceImpl.SomeBusinessImpl;
 
+@ActiveProfiles("test")
 @RunWith(MockitoJUnitRunner.class)
 public class SomeBusinessMockTest {
 
