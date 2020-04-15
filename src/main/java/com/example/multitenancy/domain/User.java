@@ -44,6 +44,21 @@ public class User extends AbstractAuditingEntity implements UserDetails {
 			@JoinColumn(name = "userid", referencedColumnName = "id") }, inverseJoinColumns = {
 					@JoinColumn(name = "roleid", referencedColumnName = "id") })
 	private Set<Role> roles;
+	
+	
+	
+	public User() {
+		super();
+	}
+
+	public User(Long id, String username, String password, Boolean isActive, Set<Role> roles) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.isActive = isActive;
+		this.roles = roles;
+	}
 
 	public Long getId() {
 		return id;
@@ -117,4 +132,11 @@ public class User extends AbstractAuditingEntity implements UserDetails {
 		return this.isActive;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", isActive=" + isActive
+				+ ", roles=" + roles + "]";
+	}
+
+	
 }

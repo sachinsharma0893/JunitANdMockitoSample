@@ -36,6 +36,11 @@ public class Role {
 		this.value = value;
 	}
 
+	@Override
+	public String toString() {
+		return "Role [id=" + id + ", type=" + type + ", value=" + value + "]";
+	}
+
 	public Role() {
 	}
 

@@ -58,6 +58,7 @@ jacocoTestReport {
 
 
 dependencies {
+	compile group: 'org.javers', name: 'javers-core', version: javers_version
 	compile group: 'joda-time', name: 'joda-time'
 	compile group: 'org.apache.commons', name: 'commons-lang3', version: common_codec_version
 	compile group: 'org.apache.commons', name: 'commons-collections4', version: common_collection_version
@@ -76,8 +77,6 @@ dependencies {
 	testImplementation 'com.h2database:h2'
 	testCompile group: 'org.powermock', name: 'powermock-api-mockito2', version: powermock_api_version
 	testCompile group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.7'
-	//testCompile group: 'org.powermock', name: 'powermock-module-junit5', version: '1.6.4'
-	
 }
 
 

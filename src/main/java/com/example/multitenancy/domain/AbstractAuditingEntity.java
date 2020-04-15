@@ -3,6 +3,7 @@ package com.example.multitenancy.domain;
 import javax.persistence.Column;
 import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Version;
 
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
@@ -19,6 +20,9 @@ public abstract class AbstractAuditingEntity {
 	@CreatedBy
 	@Column
 	private User createdby;
+	
+	@Version
+	private Long version;
 
 	@LastModifiedBy
 	@Column
